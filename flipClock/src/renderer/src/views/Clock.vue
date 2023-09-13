@@ -1,23 +1,28 @@
 <script setup lang="ts">
 import FlipClock from '../composables/FileClock'
-import { onMounted } from "vue";
+import { onMounted,watch } from "vue";
 import "@renderer/assets/flipClock.scss"
-import FooterVue from '@renderer/components/footer.vue'
 import {useConfigStore} from '@renderer/store/useConfigStore'
-
 const { config} = useConfigStore()
-onMounted(() => {
-   const instance = new FlipClock({
+const instance = new FlipClock({
             el: '#main',
            ...config.clock
         });
-        instance.render();
+       
+
+onMounted(() => {
+   instance.render();
+})
+watch(()=>config.clock.type,()=>{
+   instance.destory().config({
+            el: '#main',
+           ...config.clock
+        }).render();
 })
 </script>
 <template>
    <main>
-      <div id="main" :style="{'--bgColor':config.clock.bgColor,'--color':config.clock.color}"></div>
-      <FooterVue />
+      <div id="main" class="drag" :style="{'--bgColor':config.clock.bgColor,'--color':config.clock.color}"></div>
    </main>
 </template>
 <style lang="scss">

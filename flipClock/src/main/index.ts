@@ -8,9 +8,9 @@ function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 330,
-    height: 400,
+    height: 600,
     show: false,
-    x:1500,
+    x:900,
     y:100,
     frame: false,
     maximizable:false,

@@ -1,21 +1,32 @@
 
 import FlipNumber,{OptionsType} from './FlipNumber';
 export default class FlipClock extends FlipNumber{
-  private main:HTMLElement;
+  private main:HTMLElement|undefined;
   divs:NodeListOf<HTMLDivElement>[] = [];
   intervalId:NodeJS.Timeout|undefined
   constructor(options:OptionsType) {
     super(options);
-    this.main = document.querySelector(options.el)!;
-    this.main.classList.add('main');
+   
     //this.addCssElement()
+  }
+  config(options:OptionsType){
+    this.options=options
+    return this
   }
   // addCssElement(){
   //   document.head.insertAdjacentHTML('afterbegin',`
   //   <link rel="stylesheet" href="${this.options.style}.css">
   //   `)
   // }
+  destory(){
+    clearInterval(this.intervalId);
+    this.main!.innerHTML='';
+    return this
+  }
   render() {
+    this.init()
+    this.main = document.querySelector(this.options.el)! as HTMLDivElement;
+    this.main.classList.add('main');
     this.clock();
     this.intervalId = setInterval(() => {
       this.getNums();
@@ -53,7 +64,7 @@ export default class FlipClock extends FlipNumber{
     this.getDivs();
   }
   getDivs() {
-    this.divs = Array.from(this.main.querySelectorAll("section")).map((setion) =>
+    this.divs = Array.from(this.main!.querySelectorAll("section")).map((setion) =>
       setion.querySelectorAll("div")
     );
   }
@@ -65,7 +76,7 @@ export default class FlipClock extends FlipNumber{
   //     .map((n) => +n);
   // }
   createSectionElement() {
-    const a = this.main;
+    const a = this.main!;
     this.nums.forEach((_num, index) => {
         const {before, after} = this.getNextNum(index);
       a.insertAdjacentHTML(
@@ -78,7 +89,7 @@ export default class FlipClock extends FlipNumber{
               `
       );
       if (index % 2 && index !== this.nums.length - 1) {
-        this.main.insertAdjacentHTML("beforeend", "<p></p>");
+        this.main!.insertAdjacentHTML("beforeend", "<p></p>");
       }
     });
   }

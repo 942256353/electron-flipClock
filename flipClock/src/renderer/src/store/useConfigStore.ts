@@ -7,16 +7,16 @@ export const useConfigStore = defineStore('config', () => {
       bgColor:'#e67e22',
       color:'#fff',
       style: 'index',
-      type: 'timing' as 'clock' | 'timing',
+      type: 'clock' as 'clock' | 'timing',
       timing: {
         hour: 0,
-        minute: 0,
-        second: 100
+        minute: 8,
+        second: 10
       }
     },
     footer: {
-        bgColor:'#ecf0f1',
-        color:'#000'
+        bgColor:'#008c8c',
+        color:'#fff'
     }
   })
   return {

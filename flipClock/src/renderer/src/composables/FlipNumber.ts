@@ -8,13 +8,17 @@ export type OptionsType = {
 }
 export default class FlipNumber {
   protected nums:number[]=[];
-  endTime:dayjs.Dayjs;
+  protected endTime:dayjs.Dayjs|undefined;
   constructor(protected options:OptionsType) {
     this.options = Object.assign({ type: "clock",style:'index'}, options);
+    
+    
+  }
+  init(){
     this.endTime = dayjs();
     if (this.options.type !== "clock") {
       Object.entries(this.options.timing).forEach(
-        ([type, num]) => (this.endTime = this.endTime.add(num, type as dayjs.ManipulateType))
+        ([type, num]) => (this.endTime = this.endTime!.add(num, type as dayjs.ManipulateType))
       );
     }
   }
@@ -32,9 +36,9 @@ export default class FlipNumber {
   //获取倒计时数据
   getTimingNums() {
     //  let endTime = dayjs().add(188, 'minute')
-    let hour = this.endTime.diff(dayjs(), "hour");
-    let minute = this.endTime.diff(dayjs().add(hour, "hour"), "minute");
-    let second = this.endTime.diff(
+    let hour = this.endTime!.diff(dayjs(), "hour");
+    let minute = this.endTime!.diff(dayjs().add(hour, "hour"), "minute");
+    let second = this.endTime!.diff(
       dayjs().add(hour, "hour").add(minute, "minute"),
       "second"
     );
