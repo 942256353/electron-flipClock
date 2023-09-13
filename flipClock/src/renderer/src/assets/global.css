@@ -1,0 +1,16 @@
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+
+.nodrag, input, textarea, select, option {
+  -webkit-app-region: no-drag;
+}
+
+#app {
+  padding: 5px;
+}

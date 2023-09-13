@@ -2,15 +2,20 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import './ipc'
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 500,
-    height: 300,
+    width: 330,
+    height: 400,
     show: false,
-    x:900,
+    x:1500,
     y:100,
+    frame: false,
+    maximizable:false,
+    resizable: false,
+    transparent:true,
     alwaysOnTop:true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -19,6 +24,7 @@ function createWindow(): void {
       sandbox: false
     }
   })
+  mainWindow.setIgnoreMouseEvents(true,{forward:true})
   if(is.dev){
     mainWindow.webContents.openDevTools()
   }

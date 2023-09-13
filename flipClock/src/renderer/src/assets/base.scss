@@ -1,0 +1,104 @@
+@import 'vars';
+@import 'mixin';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+// :root{
+//     --width:100px;
+//     --height:160px;
+// }
+// body {
+//     background-color: #dcdcdc;
+//     width: 100vw;
+//     height: 100vh;
+//     @include flex;
+//     // display: flex;
+//     // justify-content: center;
+//     // align-items: center;
+// }
+
+main {
+    display: flex;
+    gap:10px;
+}
+
+main>section {
+    @include size($width, $height);
+    position: relative;
+}
+main>p::after{
+    content: ':';
+    display: block;
+    @include size(20px,$height);
+    font:bold $height arial;
+    text-align: center;
+    line-height: $height;;
+}
+main>section>div {
+    position: absolute;
+    &::before,
+    &::after {
+        @include size($width, $height/2);
+        display: block;
+        font: bold $height arial;
+        color: $color;
+        overflow: hidden;
+        // background-color: $bgColor;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    &::before {
+        content: attr(data-before);
+        line-height: $height;
+        // background-color: blue;
+        // background-color: $bgColor;
+    }
+
+    &::after {
+        content: attr(data-before);
+        line-height: 0;
+        // background-color: red;
+    }
+}
+
+main>section>div:nth-child(2) {
+    @include size($width, $height/2);
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    opacity: 0;
+    // background-color: red;
+    backface-visibility: hidden;
+    transform-origin: bottom;
+    &::before {
+        line-height: 0;
+        transform: rotateX(180deg);
+    }
+
+    &::after {
+        transform: translateY(-100%);
+        line-height: $height;
+    }
+}
+
+main>section {
+    perspective: 200px;
+}
+
+// main>section:hover>div:nth-child(2) {
+//     transform: rotateX(-180deg);
+// }
+main>section>div:nth-child(2).flipDown {
+    animation-name: flipDown;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+@keyframes flipDown{
+    to{
+        transform: rotateX(-180deg);
+    }
+}

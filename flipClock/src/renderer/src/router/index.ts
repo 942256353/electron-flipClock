@@ -1,10 +1,10 @@
 import {createRouter,createWebHistory} from 'vue-router'
 
-import Home from '@renderer/views/Home.vue'
+import Clock from '@renderer/views/Clock.vue'
 // import Show from '@renderer/views/Show.vue'
 
 const routes = [
-    {name:'home',path:'/',component:Home},
+    {name:'clock',path:'/',component:Clock},
     // {name:'show',path:'/show',component:Show},
 ]
 
