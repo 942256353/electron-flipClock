@@ -6,7 +6,7 @@ export const useConfigStore = defineStore('config', () => {
     clock: {
       bgColor:'#e67e22',
       color:'#fff',
-      style: 'index',
+      style: 'flipClock',
       type: 'clock' as 'clock' | 'timing',
       timing: {
         hour: 0,
@@ -16,10 +16,11 @@ export const useConfigStore = defineStore('config', () => {
     },
     footer: {
         bgColor:'#008c8c',
-        color:'#fff'
+        color:'#fff',
+        content:'桌面时钟@2023_By_小谢'
     }
   })
   return {
     config
   }
-})
+},{persist:true})

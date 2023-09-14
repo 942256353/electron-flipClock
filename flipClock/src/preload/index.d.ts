@@ -6,6 +6,7 @@ declare global {
     electron: ElectronAPI
     api: {
       setIgnoreMouseEvents:(ignore: boolean, options?: IgnoreMouseEventsOptions)=>void
+      quit: () => void
     }
   }
 }

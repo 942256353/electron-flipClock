@@ -7,7 +7,7 @@ export default class FlipClock extends FlipNumber{
   constructor(options:OptionsType) {
     super(options);
    
-    //this.addCssElement()
+    // this.addCssElement()
   }
   config(options:OptionsType){
     this.options=options
@@ -15,7 +15,7 @@ export default class FlipClock extends FlipNumber{
   }
   // addCssElement(){
   //   document.head.insertAdjacentHTML('afterbegin',`
-  //   <link rel="stylesheet" href="${this.options.style}.css">
+  //   <link rel="stylesheet" href="/assets/flipClock.css">
   //   `)
   // }
   destory(){

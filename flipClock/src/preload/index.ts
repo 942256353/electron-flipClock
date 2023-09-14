@@ -5,7 +5,10 @@ import { electronAPI } from '@electron-toolkit/preload'
 const api = {
   'setIgnoreMouseEvents':(ignore: boolean, options?: IgnoreMouseEventsOptions)=>{
     ipcRenderer.send('setIgnoreMouseEvents', ignore, options)
-  }
+  },
+  quit:()=>{
+    ipcRenderer.send('quit')
+  },
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

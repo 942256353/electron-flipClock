@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import {useConfigStore} from '@renderer/store/useConfigStore'
 import { Time,AlarmClock } from '@icon-park/vue-next'
+import {useRouter} from 'vue-router'
+const router = useRouter()
 const { config} = useConfigStore()
 const toggle = ()=>{
     config.clock.type=config.clock.type==='clock'?'timing':'clock'
+    router.push({name:'clock'})
 }
 </script>
 <template>
@@ -12,7 +15,6 @@ const toggle = ()=>{
             <AlarmClock theme="outline" size="18"  v-if="config.clock.type=='clock'"/>
             <Time theme="outline" size="18" v-else/>
         </div>
-        
        <div class="flex gap-1 text-sm opacity-80 hover:text-[#e67e22]">
         <RouterLink v-if="$route.name=='clock'" :to="{name:'config'}">
             配置

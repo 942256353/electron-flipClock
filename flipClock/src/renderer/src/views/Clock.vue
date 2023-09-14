@@ -19,10 +19,20 @@ watch(()=>config.clock.type,()=>{
            ...config.clock
         }).render();
 })
+const quit = ()=>{
+   window.api.quit();
+}
+const refresh = ()=>{
+   if(config.clock.type==='clock') return;
+   instance.destory().config({
+            el: '#main',
+           ...config.clock
+        }).render();
+}
 </script>
 <template>
    <main>
-      <div id="main" class="drag" :style="{'--bgColor':config.clock.bgColor,'--color':config.clock.color}"></div>
+      <div id="main" @contextmenu="quit" @dblclick="refresh" :style="{'--bgColor':config.clock.bgColor||'red','--color':config.clock.color||'#fff'}"></div>
    </main>
 </template>
 <style lang="scss">

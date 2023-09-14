@@ -1,10 +1,16 @@
-import { BrowserWindow, Menu,IpcMainEvent, ipcMain,IgnoreMouseEventsOptions,MenuItemConstructorOptions,dialog} from "electron";
+const { Menu, Tray,dialog } = require('electron')
+const path = require('path')
 
-ipcMain.on('setIgnoreMouseEvents',(event:IpcMainEvent,ignore: boolean, options?: IgnoreMouseEventsOptions)=>{
-   BrowserWindow.fromWebContents(event.sender)!.setIgnoreMouseEvents(ignore, options);
-})
-ipcMain.on('quit',()=>{
-    const template = [
+const createTray = () => {
+    const tray = new Tray(
+        path.resolve(
+            __dirname,
+            process.platform =='darwin'
+            ?'../../resources/trayTemplate@2x.png'
+            :'../../resources/windowTray.png'
+        )
+    )
+    const contextMenu = Menu.buildFromTemplate([
         {
             label: '关于',
             role:'about',
@@ -34,7 +40,9 @@ ipcMain.on('quit',()=>{
             label: '退出',
             role:'quit'
         }
-    ] as MenuItemConstructorOptions[]
-    const menu = Menu.buildFromTemplate(template)
-    menu.popup()
-})
+    ])
+    tray.setToolTip('桌面时钟')
+    tray.setContextMenu(contextMenu)
+}
+
+export default createTray

@@ -3,8 +3,8 @@
     const { config } = useConfigStore()
 </script>
 <template>
-    <main class="text-white drag bg-white bg-opacity-30 p-3 rounded-lg">
-        <div class="bg-[#34495e] rounded-lg w-full p-2">
+    <main class="text-white drag bg-white bg-opacity-30 p-3 rounded-lg select-none drag">
+        <div class="bg-[#34495e] rounded-lg w-full p-2 h-[350px] overflow-y-auto scrollbar-hide nodrag">
             <div class="card">
                 <h2>时钟颜色</h2>
                 <div class="body">
@@ -23,15 +23,34 @@
                 <div class="card flex flex-col gap-2">
                     <div class="block">
                         小时
-                        <el-input-number v-model="config.clock.timing.hour" :min="1" :max="10" size="small" />
+                        <el-input-number v-model="config.clock.timing.hour" :min="0" :max="10" size="small" />
                     </div>
                     <div class="block">
                         分钟
-                        <el-input-number v-model="config.clock.timing.minute" :min="1" :max="10" size="small" />
+                        <el-input-number v-model="config.clock.timing.minute" :min="0"  size="small" />
                     </div>
                     <div class="block">
                         秒钟
-                        <el-input-number v-model="config.clock.timing.second" :min="1" :max="10" size="small" />
+                        <el-input-number v-model="config.clock.timing.second" :min="0"  size="small" />
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>底部信息</h2>
+                <div class="body">
+                    <div class="block">
+                        文字内容
+                        <el-input v-model="config.footer.content" />
+                    </div>
+                </div>
+                <div class="body">
+                    <div class="block">
+                        背景颜色
+                        <el-color-picker v-model="config.footer.bgColor" />
+                    </div>
+                    <div class="block">
+                        文字颜色
+                        <el-color-picker v-model="config.footer.color" />
                     </div>
                 </div>
             </div>
@@ -58,5 +77,12 @@
 
     .el-popper {
         -webkit-app-region: no-drag;
+    }
+    .scrollbar-hide{
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */    
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
     }
 </style>

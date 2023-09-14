@@ -1,5 +1,4 @@
 import dayjs from "dayjs"
-
 export type OptionsType = {
   type:'clock'|'timing',
   el:string,
@@ -10,9 +9,8 @@ export default class FlipNumber {
   protected nums:number[]=[];
   protected endTime:dayjs.Dayjs|undefined;
   constructor(protected options:OptionsType) {
-    this.options = Object.assign({ type: "clock",style:'index'}, options);
-    
-    
+    console.log(options)
+    this.options = Object.assign({ type: "clock",style:'flipClock'}, options);
   }
   init(){
     this.endTime = dayjs();

@@ -3,6 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import './ipc'
+import createTray from './tray'
 
 function createWindow(): void {
   // Create the browser window.
@@ -13,8 +14,10 @@ function createWindow(): void {
     x:900,
     y:100,
     frame: false,
+    hasShadow:false,
     maximizable:false,
     resizable: false,
+    skipTaskbar:true,// 设置窗口初始时不显示在任务栏
     transparent:true,
     alwaysOnTop:true,
     autoHideMenuBar: true,
@@ -61,7 +64,10 @@ app.whenReady().then(() => {
   })
 
   createWindow()
-
+  //托盘图标,得在应用启动后创建
+  createTray()
+  //隐藏dock图标
+  process.platform=='darwin'&&app.dock.hide()
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

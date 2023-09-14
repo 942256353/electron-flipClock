@@ -1,1 +1,1 @@
-body{width:100vw;height:100vh}.drag{-webkit-app-region:drag}.nodrag,input,textarea,select,option{-webkit-app-region:no-drag}#app{padding:5px}
+*{margin:0;padding:0;box-sizing:border-box}body{width:100vw;height:100vh;overflow:hidden}.drag{-webkit-app-region:drag}.nodrag,input,textarea,select,option{-webkit-app-region:no-drag}#app{padding:5px}.el-popper.is-customized{padding:6px 12px;background:linear-gradient(90deg, #9fe597, #cce581)}.el-popper.is-customized .el-popper__arrow::before{background:linear-gradient(45deg, #b2e68d, #bce689);right:0}

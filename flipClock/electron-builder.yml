@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: flipclock
+productName: 桌面时钟
 directories:
   buildResources: build
 files:
@@ -40,4 +40,4 @@ appImage:
 npmRebuild: false
 publish:
   provider: generic
-  url: https://example.com/auto-updates
+  url: https://xiaoxie.com/auto-updates
