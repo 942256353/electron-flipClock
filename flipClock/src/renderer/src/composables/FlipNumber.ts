@@ -9,7 +9,6 @@ export default class FlipNumber {
   protected nums:number[]=[];
   protected endTime:dayjs.Dayjs|undefined;
   constructor(protected options:OptionsType) {
-    console.log(options)
     this.options = Object.assign({ type: "clock",style:'flipClock'}, options);
   }
   init(){

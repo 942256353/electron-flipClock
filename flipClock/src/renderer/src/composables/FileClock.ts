@@ -2,6 +2,9 @@
 import FlipNumber,{OptionsType} from './FlipNumber';
 export default class FlipClock extends FlipNumber{
   private main:HTMLElement|undefined;
+  before:number=0;
+  after:number=0;
+  audio:HTMLAudioElement=document.querySelector('#timeout')!;
   divs:NodeListOf<HTMLDivElement>[] = [];
   intervalId:NodeJS.Timeout|undefined
   constructor(options:OptionsType) {
@@ -32,9 +35,10 @@ export default class FlipClock extends FlipNumber{
       this.getNums();
       this.updateDivNumber();
       if(this.nums.filter(n=>n>0).length===0){
+        this.audio.play()
         clearInterval(this.intervalId);
       }
-    }, 500);
+    }, 100);
   }
   //暂停
   stop(){
@@ -45,6 +49,8 @@ export default class FlipClock extends FlipNumber{
     this.divs.forEach((divs, index) => {
         const div= divs[1]
         const {before,after} = this.getNextNum(index);
+        this.before = before;
+        this.after = after;
         if (Number(div.dataset.before)!== before) {
            div.classList.add("flipDown");
         }

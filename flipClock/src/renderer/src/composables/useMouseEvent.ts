@@ -1,7 +1,6 @@
 export default ()=>{
     const fn = () => {
         const el = document.querySelector('#app')! as HTMLDivElement
-        console.log(el)
        el.addEventListener('mouseenter', ()=>{
            window.api.setIgnoreMouseEvents(false)
        })

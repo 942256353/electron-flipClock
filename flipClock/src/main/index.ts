@@ -28,9 +28,9 @@ function createWindow(): void {
     }
   })
   mainWindow.setIgnoreMouseEvents(true,{forward:true})
-  if(is.dev){
+  // if(is.dev){
     mainWindow.webContents.openDevTools()
-  }
+  //}
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
