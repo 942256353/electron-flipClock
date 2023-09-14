@@ -35,8 +35,8 @@ export default class FlipClock extends FlipNumber{
       this.getNums();
       this.updateDivNumber();
       if(this.nums.filter(n=>n>0).length===0){
-        this.audio.play()
         clearInterval(this.intervalId);
+        this.audio?.play()
       }
     }, 100);
   }

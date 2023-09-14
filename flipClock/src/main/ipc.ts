@@ -7,7 +7,7 @@ ipcMain.on('quit',()=>{
     const template = [
         {
             label: '关于',
-            role:'about',
+            // role:'about',
             click:()=>{
                 dialog.showMessageBox({
                     type:'info',

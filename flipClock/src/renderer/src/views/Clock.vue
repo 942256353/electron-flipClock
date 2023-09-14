@@ -36,8 +36,4 @@ const refresh = ()=>{
    </main>
 </template>
 <style lang="scss">
-:root{
-   // --bgColor:#e67e22;
-   // --color:#000;
-}
 </style>

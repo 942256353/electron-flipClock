@@ -13,7 +13,7 @@ const createTray = () => {
     const contextMenu = Menu.buildFromTemplate([
         {
             label: '关于',
-            role:'about',
+            // role:'about',
             click:()=>{
                 dialog.showMessageBox({
                     type:'info',

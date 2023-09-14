@@ -1,9 +1,23 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow  } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import './ipc'
 import createTray from './tray'
+
+// function registerLocalResourceProtocol() {
+//   protocol.registerFileProtocol('local-resource', (request, callback) => {
+//     const url = request.url.replace(/^local-resource:\/\//, '')
+//     // Decode URL to prevent errors when loading filenames with UTF-8 chars or chars like "#"
+//     const decodedUrl = decodeURI(url) // Needed in case URL contains spaces
+//     try {
+//       return callback(decodedUrl)
+//     }
+//     catch (error) {
+//       console.error('ERROR: registerLocalResourceProtocol: Could not get file path:', error)
+//     }
+//   })
+// }
 
 function createWindow(): void {
   // Create the browser window.
@@ -62,7 +76,7 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
-
+  // registerLocalResourceProtocol();
   createWindow()
   //托盘图标,得在应用启动后创建
   createTray()
