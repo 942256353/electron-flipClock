@@ -38,7 +38,7 @@ export default class FlipClock extends FlipNumber{
         clearInterval(this.intervalId);
         this.audio?.play()
       }
-    }, 100);
+    }, 500);
   }
   //暂停
   stop(){
